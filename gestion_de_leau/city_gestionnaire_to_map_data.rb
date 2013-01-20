@@ -2,13 +2,13 @@
 
 require 'csv'
 
-cities = CSV.open('cities.csv', 'r', {:headers => true})
-gestionnaires = CSV.open('gestionnaires.csv', 'r', {:headers => true})
-prices = CSV.open('prixdeleau31.csv', 'r', {:headers => true})
+cities = CSV.open('csv/cities.csv', 'r', {:headers => true})
+gestionnaires = CSV.open('csv/gestionnaires.csv', 'r', {:headers => true})
+prices = CSV.open('csv/prixdeleau31.csv', 'r', {:headers => true})
 
 # Clean cities csv
 def clean_cities(cities)
-  CSV.open('region_cities.csv', 'wb') do |csv|
+  CSV.open('csv/region_cities.csv', 'wb') do |csv|
     csv << ['NomVille','MAJ','CodePostal','CodeINSEE','CodeRegion','Latitude','Longitude','Eloignement']
     cities.each do |city|
       codePostal = city["CodePostal"].to_i
@@ -20,7 +20,7 @@ def clean_cities(cities)
 end
 # clean_cities(cities)
 
-region_cities = CSV.open('region_cities.csv', 'r', {:headers => true})
+region_cities = CSV.open('csv/region_cities.csv', 'r', {:headers => true})
 
 CSV.open('map_data.csv', 'wb') do |csv|
 
